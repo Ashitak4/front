@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { PollService } from './services/poll.service';
+import { PollHttpService } from './services/poll-http.service';
 
 @Component({
   selector: 'app-poll',
@@ -11,7 +11,7 @@ export class PollComponent implements OnInit {
   pollData: any;
   @Output() onAnswerClick = new EventEmitter<string>();
 
-  constructor(private pollService: PollService) {}
+  constructor(private pollHttpService: PollHttpService) {}
 
   ngOnInit(): void {
     this.loadPoll();
@@ -28,19 +28,24 @@ export class PollComponent implements OnInit {
           ]
       }
   }
-    // this.pollService.getPollResults(this.pollId).subscribe(
-    //   data => {
-    //     this.pollData = data;
-    //   },
-    //   error => {
-    //     console.error('Error fetching poll data', error);
-    //   }
-    // );
+    this.pollHttpService.getPollResults(this.pollId).subscribe({
+      next: this.handlePollResults.bind(this),
+      error: this.handlePollErrors.bind(this)
+    });
+  }
+
+  handlePollResults(data: any) {
+    console.log('Poll data fetched successfully', data);
+    this.pollData = data;
+  }
+
+  handlePollErrors(error: any) {
+    console.error('Error fetching poll data', error);
   }
 
   submitVote(vote: string) {
     this.onAnswerClick.emit(vote);
-    // this.pollService.submitVote(this.pollId, vote).subscribe(
+    // this.PollHttpService.submitVote(this.pollId, vote).subscribe(
     //   data => {
     //     this.pollData = data;  // Update the poll results after submitting the vote
     //   },

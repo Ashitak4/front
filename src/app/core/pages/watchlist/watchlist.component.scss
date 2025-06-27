@@ -1,0 +1,114 @@
+.watchlist-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--tertiary-color);
+  padding: 2rem;
+
+  .watchlist-header {
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: 4rem;
+      color: var(--quinary-color);
+      margin: 0;
+    }
+  }
+
+  .watchlist-table {
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+
+    thead {
+      background-color: var(--quinary-color);
+      color: var(--primary-color);
+    }
+    
+    .table-wrapper {
+        overflow-x: auto;
+        width: 100%;
+    }
+
+
+    tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    td app-sparkline {
+        display: block;
+        width: 100%;
+    }
+    
+    th:first-child { 
+        border-top-left-radius: 8px; 
+        border-bottom-left-radius: 8px;
+    }
+    th:last-child { 
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      vertical-align: middle;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    td:last-child {
+      width: 150px;
+    }
+
+    tr:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    td.sparkline-cell {
+      width: 150px;
+      padding: 4px 8px;
+      background-color: var(--quinary-color);
+      border-radius: 4px;
+    }
+  }
+}
+
+.load-button {
+  background-color: var(--quinary-color);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.2s;
+  min-width: 180px;
+
+  background-color: var(--quinary-color);
+
+  &:hover:not(:disabled) {
+    filter: brightness(0.9); // darkens visually
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

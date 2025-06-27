@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class PollService {
+export class PollHttpService {
   private apiUrl = 'http://localhost:5000/api/polls';  // Flask API base URL
 
   constructor(private http: HttpClient) {}

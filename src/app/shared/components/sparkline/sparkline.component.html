@@ -1,0 +1,9 @@
+<div class="sparkline-container" *ngIf="isBrowser">
+  <canvas
+    baseChart
+    [data]="lineChartData"
+    chartType="line"
+    [options]="chartOptions"
+    width="200" height="80">
+  </canvas>
+</div>

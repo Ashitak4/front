@@ -1,0 +1,60 @@
+<!-- <button class="" (click)="loadCompaniesPEA()">
+  Load Companies
+</button> -->
+<button class="load-button" [disabled]="isLoading" (click)="loadCompaniesPEA()">
+  <span *ngIf="!isLoading">🔄 Load Companies</span>
+  <span *ngIf="isLoading" class="spinner"></span>
+</button>
+<div class="watchlist-container" *ngIf="tableData && tableData.length > 0">
+  <div class="watchlist-header">
+    <h1>Stock Watchlist PEA</h1>
+  </div>
+
+
+  <div>
+    <p class="watchlist-description">
+      This is a list of companies that I am currently following. The data is updated daily at 9am.
+    </p>
+  </div>
+
+  <div class="watchlist-table">
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>Name</th>
+            <th>Market Cap</th>
+            <th>Price</th>
+            <th>High</th>
+            <th>% From High</th>
+            <th>PE</th>
+            <th>Daily %</th>
+            <th>EPS</th>
+            <th>Sector</th>
+            <!-- <th>Moat</th> -->
+            <th>Sparkline</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let company of tableData">
+            <td>{{ company.ticker }}</td>
+            <td>{{ company.name }}</td>
+            <td>{{ formatMarketCap(company.market_cap) }}</td>
+            <td>{{ formatPrice(company.price, company.currency) }}</td>
+            <td>{{ formatPrice(company.high_price, company.currency) }}</td>
+            <td [ngStyle]="{ 'background-color': getDropFromHighColor(company.drop_from_high) }">{{ company.drop_from_high }}</td>
+            <td [ngStyle]="{ 'background-color': getPERatioColor(company.pe) }">{{ company.pe }}</td>
+            <td>{{ company.daily_change }}</td>
+            <td [ngStyle]="{ 'background-color': getEPSColor(company.pe) }">{{ company.eps }}</td>
+            <td>{{ company.sector }}</td>
+            <!-- <td>{{ company.moat }}</td> -->
+            <td class="sparkline-cell">
+              <app-sparkline [data]="company.price_history"></app-sparkline>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

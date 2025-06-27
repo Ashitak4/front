@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HomeModule } from './home/home.module';
 import { WhyInvestModule } from './pages/why/why-invest/why-invest.module';
 import { WhyModule } from './pages/why/why.module';
-import { SupportChannelComponent } from './pages/support-channel/support-channel.component';
 import { SupportChannelModule } from './pages/support-channel/support-channel.module';
+import { WatchlistModule } from './pages/watchlist/watchlist.module';
 
 @NgModule({
   declarations: [
@@ -13,8 +13,8 @@ import { SupportChannelModule } from './pages/support-channel/support-channel.mo
     CommonModule,
     HomeModule,
     WhyModule,
-    WhyInvestModule,
-    SupportChannelModule
+    SupportChannelModule,
+    WatchlistModule
   ],
   exports: [
   ]
